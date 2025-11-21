@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: 222 47% 11%;
+  --background: 0 0% 100%;
+  --muted: 215 20% 96%;
+  --border: 214 32% 91%;
+  --gold: 292 84% 61%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+.container-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-semibold transition-colors focus:outline-none focus-visible:shadow-glow disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-primary {
+  @apply bg-gold text-black hover:bg-gold-dark;
+}
+
+.btn-outline {
+  @apply border border-gold text-gold hover:bg-gold hover:text-black;
+}
+
+
