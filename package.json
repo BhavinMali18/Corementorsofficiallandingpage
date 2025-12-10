@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "start": "next start",
     "postbuild": "if exist dist rmdir /s /q dist",
     "preview": "npx --yes serve -s out -l 3000"
   },

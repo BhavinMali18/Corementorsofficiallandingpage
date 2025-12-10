@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true
-  },
-  output: 'export'
+  }
+  // Removed 'output: export' for server-side deployment
 };
 
 module.exports = nextConfig;
