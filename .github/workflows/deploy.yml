@@ -41,6 +41,6 @@ jobs:
             git pull origin main
             npm ci
             npm run build
-            pm2 restart corementors || pm2 start npm --name "corementors" -- start
+            pm2 restart corementors || pm2 start ecosystem.config.js
             pm2 save
 

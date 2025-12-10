@@ -54,9 +54,25 @@ echo "⚠️  Please edit /var/www/corementors/.env.local with your actual value
 echo "🔨 Building application..."
 npm run build
 
-# Start with PM2
-echo "🚀 Starting application with PM2..."
-pm2 start npm --name "corementors" -- start
+# Create PM2 ecosystem config
+echo "📝 Creating PM2 configuration..."
+cat > ecosystem.config.js << 'EOF'
+module.exports = {
+  apps: [{
+    name: 'corementors',
+    script: 'npm',
+    args: 'start',
+    env: {
+      PORT: 3003,
+      NODE_ENV: 'production'
+    }
+  }]
+};
+EOF
+
+# Start with PM2 on port 3003
+echo "🚀 Starting application with PM2 on port 3003..."
+pm2 start ecosystem.config.js
 pm2 save
 pm2 startup
 
@@ -68,7 +84,7 @@ server {
     server_name corementors.in www.corementors.in;
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3003;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';

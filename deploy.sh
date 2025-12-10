@@ -20,9 +20,9 @@ npm ci --production
 echo "🔨 Building application..."
 npm run build
 
-# Restart PM2
-echo "🔄 Restarting application..."
-pm2 restart corementors || pm2 start npm --name "corementors" -- start
+# Restart PM2 on port 3003
+echo "🔄 Restarting application on port 3003..."
+pm2 restart corementors || pm2 start ecosystem.config.js
 
 # Save PM2 configuration
 pm2 save
