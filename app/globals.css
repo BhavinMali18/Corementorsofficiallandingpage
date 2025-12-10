@@ -2,12 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 :root {
+  --font-main: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-accent: "Poppins", system-ui, sans-serif;
+  --color-bg-card: #0b1120;
+  --color-bg-soft: #020617;
+  --color-text-main: #f9fafb;
+  --color-text-muted: #9ca3af;
+  --color-accent: #ec4899;
   --foreground: 222 47% 11%;
   --background: 0 0% 100%;
   --muted: 215 20% 96%;
   --border: 214 32% 91%;
-  --gold: 292 84% 61%;
+  --gold: 320 58% 50%; /* B43E8F - Raspberry Plum */
+  /* New Color Palette */
+  --primary: 320 58% 50%; /* B43E8F - Raspberry Plum */
+  --primary-light: 300 80% 70%; /* EA7AF4 - Violet */
+  --primary-dark: 270 100% 35%; /* 6200B3 - Indigo Bloom */
+  --secondary: 270 100% 25%; /* 3B0086 - Indigo */
+  --accent: 300 100% 50%; /* CE2D4F - Raspberry Red */
+  --accent-light: 330 50% 70%; /* CE6D8B - Blush Rose */
+  --accent-soft: 330 30% 85%; /* CEBBC9 - Thistle */
+  --blue-primary: 230 90% 60%; /* 4056F4 - Full Spectrum Blue */
+  --blue-secondary: 250 95% 55%; /* 470FF4 - Blue */
+  --dark: 300 50% 8%; /* 290628 - Midnight Violet */
 }
 
 * {
@@ -19,6 +39,9 @@ html, body {
 }
 
 body {
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.5;
   color: hsl(var(--foreground));
   background: hsl(var(--background));
   font-feature-settings: "rlig" 1, "calt" 1;
@@ -33,11 +56,11 @@ body {
 }
 
 .btn-primary {
-  @apply bg-gold text-black hover:bg-gold-dark;
+  @apply bg-[#B43E8F] text-white hover:bg-[#6200B3];
 }
 
 .btn-outline {
-  @apply border border-gold text-gold hover:bg-gold hover:text-black;
+  @apply border border-[#B43E8F] text-[#B43E8F] hover:bg-[#B43E8F] hover:text-white;
 }
 
 

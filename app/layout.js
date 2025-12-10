@@ -19,15 +19,20 @@ export const metadata = {
 
 import "./globals.css";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+import ConditionalFooter from "../components/ConditionalFooter";
+import Script from "next/script";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col font-sans antialiased">
+        <Script
+          src="https://accounts.google.com/gsi/client"
+          strategy="lazyOnload"
+        />
         <Header />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <ConditionalFooter />
       </body>
     </html>
   );
