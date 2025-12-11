@@ -38,7 +38,7 @@ server {
         
         # WebSocket support
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Connection "upgrade";
         proxy_cache_bypass $http_upgrade;
         
         # Timeouts
@@ -67,19 +67,20 @@ server {
         proxy_set_header Host $host;
     }
 }
-
-# WebSocket upgrade map
-map $http_upgrade $connection_upgrade {
-    default upgrade;
-    '' close;
-}
 EOF
 
-# Move the map block to nginx.conf if it doesn't exist there
+# Add WebSocket upgrade map to nginx.conf if it doesn't exist
 if ! grep -q "map \$http_upgrade \$connection_upgrade" /etc/nginx/nginx.conf; then
     echo "📝 Adding WebSocket upgrade map to nginx.conf..."
-    # Add map block before http block
-    sed -i '/^http {/i map $http_upgrade $connection_upgrade {\n    default upgrade;\n    '\'''\'' close;\n}\n' /etc/nginx/nginx.conf
+    # Find the http block and add map inside it (after the opening brace)
+    if grep -q "^http {" /etc/nginx/nginx.conf; then
+        # Add map directive right after "http {"
+        sed -i '/^http {/a \    map $http_upgrade $connection_upgrade {\n        default upgrade;\n        '\'''\'' close;\n    }' /etc/nginx/nginx.conf
+    else
+        echo "⚠️  Could not find 'http {' in nginx.conf, using simple Connection header"
+        # Use a simpler approach without map
+        sed -i 's/proxy_set_header Connection \$connection_upgrade;/proxy_set_header Connection "upgrade";/' /etc/nginx/sites-available/corementors.in
+    fi
 fi
 
 # Test Nginx configuration
