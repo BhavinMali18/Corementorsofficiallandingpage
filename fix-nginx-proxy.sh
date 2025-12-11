@@ -69,19 +69,8 @@ server {
 }
 EOF
 
-# Add WebSocket upgrade map to nginx.conf if it doesn't exist
-if ! grep -q "map \$http_upgrade \$connection_upgrade" /etc/nginx/nginx.conf; then
-    echo "📝 Adding WebSocket upgrade map to nginx.conf..."
-    # Find the http block and add map inside it (after the opening brace)
-    if grep -q "^http {" /etc/nginx/nginx.conf; then
-        # Add map directive right after "http {"
-        sed -i '/^http {/a \    map $http_upgrade $connection_upgrade {\n        default upgrade;\n        '\'''\'' close;\n    }' /etc/nginx/nginx.conf
-    else
-        echo "⚠️  Could not find 'http {' in nginx.conf, using simple Connection header"
-        # Use a simpler approach without map
-        sed -i 's/proxy_set_header Connection \$connection_upgrade;/proxy_set_header Connection "upgrade";/' /etc/nginx/sites-available/corementors.in
-    fi
-fi
+# Don't modify nginx.conf - we're using a simple Connection header instead
+echo "✅ Using simple Connection header (no nginx.conf modification needed)"
 
 # Test Nginx configuration
 echo "🧪 Testing Nginx configuration..."
@@ -116,7 +105,13 @@ if [ $? -eq 0 ]; then
 else
     echo "❌ Nginx configuration test failed!"
     echo "Restoring backup..."
-    cp /etc/nginx/sites-available/corementors.in.backup.* /etc/nginx/sites-available/corementors.in
+    BACKUP_FILE=$(ls -t /etc/nginx/sites-available/corementors.in.backup.* 2>/dev/null | head -1)
+    if [ -n "$BACKUP_FILE" ] && [ -f "$BACKUP_FILE" ]; then
+        cp "$BACKUP_FILE" /etc/nginx/sites-available/corementors.in
+        echo "✅ Backup restored"
+    else
+        echo "⚠️  No backup found, please check nginx.conf manually"
+    fi
     exit 1
 fi
 
