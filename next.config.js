@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true
-  }
-  // Removed 'output: export' for server-side deployment
+  },
+  output: 'standalone', // Enable standalone output for Docker
 };
 
 module.exports = nextConfig;
