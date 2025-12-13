@@ -72,9 +72,9 @@ export default function HomePage() {
               {/* Left Side - Text Content */}
               <div className="text-white space-y-6">
                 <div className="space-y-2">
-                  <h2 className="text-6xl sm:text-7xl font-bold tracking-tight">DEVELOPMENT</h2>
-                  <h2 className="text-6xl sm:text-7xl font-bold tracking-tight">DEPLOYMENT</h2>
-                  <h2 className="text-6xl sm:text-7xl font-bold tracking-tight">OPTIMIZATION</h2>
+                  <h2 className="text-6xl sm:text-7xl font-bold tracking-tight w-fit">DEVELOPMENT</h2>
+                  <h2 className="text-6xl sm:text-7xl font-bold tracking-tight w-fit">DEPLOYMENT</h2>
+                  <h2 className="text-6xl sm:text-7xl font-bold tracking-tight w-fit">OPTIMIZATION</h2>
                 </div>
                 
                 {/* Profile Avatars */}
