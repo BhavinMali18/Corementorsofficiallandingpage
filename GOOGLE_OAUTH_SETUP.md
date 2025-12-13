@@ -64,3 +64,5 @@ npm run dev
 - The current implementation stores user data in `localStorage` (for demo purposes)
 - In production, you should verify the JWT token on your backend server
 
+
+

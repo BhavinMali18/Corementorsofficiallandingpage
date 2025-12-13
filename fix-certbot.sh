@@ -65,3 +65,5 @@ echo "1. Verify DNS: Make sure corementors.in points to 147.93.155.38"
 echo "2. Test: curl http://corementors.in (should work)"
 echo "3. Run: certbot --nginx -d corementors.in -d www.corementors.in"
 
+
+

@@ -115,3 +115,5 @@ If deployment fails, check:
 2. Server logs: `pm2 logs corementors`
 3. Nginx logs: `/var/log/nginx/error.log`
 
+
+

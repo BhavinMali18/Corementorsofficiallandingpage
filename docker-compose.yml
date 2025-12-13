@@ -12,6 +12,12 @@ services:
       - PORT=3000
       - NEXT_PUBLIC_GOOGLE_CLIENT_ID=${NEXT_PUBLIC_GOOGLE_CLIENT_ID}
       - NEXT_PUBLIC_WORKPLACE_DOMAIN=${NEXT_PUBLIC_WORKPLACE_DOMAIN:-corementors.in}
+      - DB_HOST=${DB_HOST:-147.93.155.38}
+      - DB_PORT=${DB_PORT:-5423}
+      - DB_NAME=${DB_NAME:-postgres}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-asdfghjkl}
+      - DB_SSL=${DB_SSL:-false}
     networks:
       - corementors-network
     # Don't expose port directly - only through nginx
@@ -49,4 +55,6 @@ networks:
 volumes:
   certbot-www:
   certbot-conf:
+
+
 

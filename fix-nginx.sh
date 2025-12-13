@@ -47,3 +47,5 @@ lsof -i :80
 echo ""
 echo "✅ Done! Now run: certbot --nginx -d corementors.in -d www.corementors.in"
 
+
+

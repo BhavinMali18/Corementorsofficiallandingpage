@@ -59,3 +59,5 @@ echo ""
 echo "✅ Setup complete!"
 echo "📋 Check logs with: pm2 logs corementors"
 
+
+
