@@ -33,6 +33,14 @@ if [ ! -f .env ]; then
     cat > .env << EOF
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=${NEXT_PUBLIC_GOOGLE_CLIENT_ID:-YOUR_GOOGLE_CLIENT_ID}
 NEXT_PUBLIC_WORKPLACE_DOMAIN=corementors.in
+
+# Database Configuration
+DB_HOST=147.93.155.38
+DB_PORT=5423
+DB_NAME=postgres
+DB_USER=postgres
+DB_PASSWORD=asdfghjkl
+DB_SSL=false
 EOF
     echo "⚠️  Please edit .env file with your actual values!"
 fi
