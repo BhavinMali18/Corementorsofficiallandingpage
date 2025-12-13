@@ -1,0 +1,17 @@
+# Coolify ignore file
+# Files and directories to exclude from deployment
+
+.github/
+node_modules/
+.next/
+.env.local
+.env*.local
+*.md
+!COOLIFY_DEPLOYMENT.md
+!DATABASE_SETUP.md
+!README.md
+nginx/
+*.sh
+.git/
+.gitignore
+
